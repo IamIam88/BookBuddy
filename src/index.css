@@ -1,8 +1,9 @@
 body {
   font-family: Georgia, serif;
-  background-color: #f8f8f8;
-  margin: 0;
-  padding: 0;
+  background-color: lavenderblush;
+  color: darkslategrey;
+  padding: 10px;
+  text-align: center;
 }
 
 #logo-image {
@@ -10,4 +11,66 @@ body {
   margin-right: 10px;
 }
 
-/* Add your own custom styles here */
+img {
+  max-width: 500px;
+  max-height: 500px;
+  object-fit: contain;
+  /* box-shadow: 10px 10px 25px lightslategray; */
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 15rem 15rem 15rem 15rem 15rem 15rem 15rem;
+  grid-gap: 1rem;
+  text-align: center;
+}
+
+.found {
+  background-color: lightgreen;
+  border-radius: 25px;
+  padding: 5px;
+  text-align: center;
+}
+
+.button {
+  background-color: lightblue;
+  border: none;
+  padding: 5px 15px;
+  font-size: 14px;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 12px;
+  /* box-shadow: 10px 10px 25px lightslategray; */
+}
+
+.navContainer {
+  display: flex;
+  gap: 0.625%;
+  margin-bottom: 50px;
+}
+
+a {
+  flex: 1;
+  text-decoration: none;
+  text-align: center;
+  line-height: 2.5;
+  color: darkslategrey;
+  border-radius: 25px;
+}
+
+a:link,
+a:visited,
+a:focus {
+  background: lightsteelblue;
+  color: darkslategrey;
+}
+
+a:hover {
+  background: orange;
+  transition: 0.25s;
+}
+
+a:active {
+  background: darkorange;
+  color: white;
+}

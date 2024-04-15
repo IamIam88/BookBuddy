@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import AllBooks from './components/Books'
 import Login from './components/Login'
 import Register from './components/Register'
@@ -9,17 +9,15 @@ import Nav from './components/Navigations'
 
 function App() {
   const [token, setToken] = useState(null)
-  const location = useLocation()
-  const { basename } = location
 
   return (
     <>
     <Nav/>
-    <Routes basename={basename}>
+    <Routes>
       <Route path = {'/books'} element={<AllBooks/>}/>
       <Route path = {'/login'} element={<Login setToken={setToken}/>}/>
       <Route path = {'/register'} element={<Register setToken={setToken}/>}/>
-      <Route path = {'/books/:id'} element={<SingleBook/>}/>
+      <Route path = {'/books/:id'} element={<SingleBook token={token}/>}/>
       <Route path = {'/userAccount'} element={<UserAccount token={token}/>}/>
     </Routes>
     </>
