@@ -15,7 +15,15 @@ function UserAccount({token}) {
             'Authorization': `Bearer ${token}`
           },
         });
+        const resResponse = await fetch('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+        });
         const data = await response.json();
+        const resData = await resResponse.json();
+        data.books = resData.reservation;
         setUser(data);
         console.log(data)
       } catch (error) {
@@ -26,6 +34,16 @@ function UserAccount({token}) {
     getUser();
   }, [token]);
   
+  const returnFunction = async (id) => {
+    const response = await fetch('https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/reservations/' + id, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    console.log(response);
+  }
+
   return (
     <>
       <h1>User Details Page</h1>
@@ -35,7 +53,7 @@ function UserAccount({token}) {
           <h2>Welcome, {user.firstname} {user.lastname}!</h2>
           <p>Email: {user.email}</p>
           <p>User: {user.id}</p>
-          <p>Books: {user.books && user.books.length > 0 ? user.books.map(book => book.title).join(", ") : 'None'}</p>
+          <div>Books: {user.books && user.books.length > 0 ? user.books.map(book => <><p>{book.title}</p><button onClick={() => {returnFunction(book.id)}}>Return Book</button></>) : 'None'}</div>
         </div>
       )}
       {token && !user && <p>Loading account details...</p>}
